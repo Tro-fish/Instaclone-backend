@@ -1,0 +1,20 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "description": "",
+  
+  "scripts": {
+    "dev": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tro-fish/Instaclone-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tro-fish/Instaclone-backend/issues"
+  },
+  "homepage": "https://github.com/Tro-fish/Instaclone-backend#readme"
+}
