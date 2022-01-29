@@ -12,6 +12,7 @@ type Mutation {
       username: String!
       email: String!
       password: String!
+      avater : Upload
     ): CreateAccountResult!    
   }
 `
