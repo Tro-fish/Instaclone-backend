@@ -11,16 +11,63 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   firstName String
   lastName  String?
-  username  String   @unique
-  email     String   @unique
+  username  String    @unique
+  email     String    @unique
   password  String
   bio       String?
   avatar    String?
-  followers User[] @relation("FollowRelation", references : [id])
-  following User[] @relation("FollowRelation", references : [id])
+  photos    Photo[]
+  followers User[]    @relation("FollowRelation", references: [id])
+  following User[]    @relation("FollowRelation", references: [id])
+  createAt  DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  likes     Like[]
+  comments   Comment[]
+}
+
+model Photo {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id])
+  file      String
+  caption   String?
+  hashtags  Hashtag[]
+  userId    Int
+  createAt  DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  likes     Like[]
+  comments   Comment[]
+}
+
+model Hashtag {
+  id        Int      @id @default(autoincrement())
+  hashtag   String   @unique
+  photos    Photo[]
   createAt  DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  photoId   Int
+  userId    Int
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+
+  @@unique([photoId, userId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+  payload   String
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  photoId   Int
+  userId    Int
 }
