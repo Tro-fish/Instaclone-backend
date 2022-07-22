@@ -1,4 +1,4 @@
-Instaclone Backend.
+Instagram backend cloncoding with Apollo, GrahQL, JS
 
 Features : 
 
